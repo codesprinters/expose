@@ -1,0 +1,51 @@
+A simple plugin to change ActionController default open policy to a more secure "closed-by-defaul" policy.
+
+With this plugin public methods on controllers are not available to requests by default; instead, they need to be exposed explicitly (with stating allowed methods). This prevents accidental allowing access to helper methods or filters as well as solves the problem of forgetting to add verify invokations to prevent using GET to access actions that manipulate data.
+
+The name "expose" (and parts of the concept) is taken from CherryPy (www.cherrypy.org).
+
+Usage:
+
+class MyController < ApplicationController
+
+
+  expose :get, :index
+  def index
+    ...
+  end
+
+  expose :get, :show
+
+  def show
+    ...
+  end
+  
+  expose :post, :create
+  
+  def create
+    ...
+  end
+
+  expose [:get, :post], :create
+  
+  def action_for_both_post_and_get
+  end
+
+  # you can also expose many methods at once:
+  expose [:put, :post], :update, :change_owner
+  
+  def update
+  end
+  
+  def change_owner
+  end
+
+end
+
+
+Methods exposed in base controller are also exposed in derived controllers.
+
+
+Author: Paweł Stradomski <pstradomski@codesprinters.com>
+
+(C) Codesprinters, 2008. Released under MIT licence.

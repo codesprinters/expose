@@ -48,4 +48,4 @@ Methods exposed in base controller are also exposed in derived controllers.
 
 Author: Paweł Stradomski <pstradomski@codesprinters.com>
 
-(C) Codesprinters, 2008. Released under MIT licence.
+(C) 2008 Code Sprinters <http://www.codesprinters.com>. Released under MIT licence.
